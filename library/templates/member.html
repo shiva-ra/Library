@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+  <article class="media content-section">
+
+          <div class="media-body">
+            <div class="article-metadata">
+                <h2><a class="article-title" href="{{ url_for('member', member_id=member.id) }}">{{ member.name }}</a></h2>
+
+            </div>
+
+              <p class="article-content">{{ "Address: " + member.address }}</p>
+
+              <small class="text-muted">{{ "Member Id: " }}</small>
+              <small class="text-muted">{{ member.id }}</small> <br>
+              <small class="text-muted">{{ "Outstanding Balance: " }}</small>
+              <small class="text-muted">{{ member.balance }}</small>
+              <div>
+              <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_member', member_id=member.id) }}">Update</a>
+              <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('delete_member', member_id=member.id) }}">Delete</a>
+          </div>
+          </div>
+  </article>
+{% endblock content %}

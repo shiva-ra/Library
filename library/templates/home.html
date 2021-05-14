@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.query.label(class="form-control-label") }}
+                {% if form.query.errors %}
+                    {{ form.query(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.query.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.query(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+    {% for book in books %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+                <h2><a class="article-title" href="{{ url_for('book', book_id=book.id) }}">{{ book.name }}</a></h2>
+
+            </div>
+
+              <a class="mr-2" href="#">{{ "Author: " + book.author }}</a>
+              <p class="article-content">{{ book.description }}</p>
+              <small class="text-muted">{{ "Book Id: " }}</small>
+              <small class="text-muted">{{ book.id }}</small><br>
+              <small class="text-muted">{{ "Available Quantity: " }}</small>
+              <small class="text-muted">{{ book.quantity }}</small><br>
+              <small class="text-muted">{{ "Total Quantity: " }}</small>
+              <small class="text-muted">{{ book.total_quantity }}</small>
+
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
